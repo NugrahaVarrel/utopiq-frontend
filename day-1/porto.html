@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nugraha Varrel — Data & BI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <a href="#works">Karya</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="container hero">
+      <div class="hero-text">
+        <h1>Hai, saya Nugraha Varrel<br/>Data Analyst & Creative Technologist</h1>
+        <p>Lulusan Informatika yang fokus pada <strong>analitik data, visualisasi, dan cloud</strong>. Pernah magang di <strong>PT Petrokimia Gresik</strong> membangun dashboard & laporan internal. Alumni <strong>BisaAI (Data Science)</strong> & <strong>Bangkit (Cloud)</strong>. Tujuan saya: mengubah data menjadi keputusan bisnis nyata.</p>
+        <a class="cta" href="/Nugraha_Varrel_Kusuma_ATS_CV.pdf" download>Download Resume</a>
+      </div>
+      <figure class="avatar" aria-label="Profile photo">
+        <img src="https://media.licdn.com/dms/image/v2/D5603AQHSLekTRoRLrA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705067710250?e=1760572800&v=beta&t=DMO6-jJBf648aCHynxmQMdsSh5Cr1ZcxWwa41o0zdag" alt="Nugraha Varrel">
+      </figure>
+    </section>
+
+    <!-- Tulisan terbaru -->
+    <section class="posts-wrap" id="blog">
+      <div class="container">
+        <div class="posts-head">
+          <h2>Tulisan terbaru</h2>
+          <a href="#">Lihat semua</a>
+        </div>
+        <div class="posts">
+          <article class="post">
+            <h3>Membangun Dashboard Penjualan D’Busana</h3>
+            <div class="meta">30 Jun 2025<span class="dot">•</span>Power BI, Retail</div>
+            <p>End‑to‑end pembuatan dashboard: pemodelan data, DAX KPI (Revenue, Profit, Margin), dan desain UI yang siap dipakai manajemen toko.</p>
+          </article>
+          <article class="post">
+            <h3>Optimasi Prediksi Penjualan dengan XGBoost + BayesSearchCV</h3>
+            <div class="meta">02 Jul 2025<span class="dot">•</span>Machine Learning, Time Series</div>
+            <p>Pipeline prediksi penjualan bulanan: feature engineering musiman, validasi, dan Bayesian Optimization untuk hiperparameter XGBoost.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Karya Terpilih -->
+    <section class="container works" id="works">
+      <h2>Karya Terpilih</h2>
+
+      <article class="work">
+        <div class="thumb"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop" alt="Designing Dashboards"></div>
+        <div>
+          <h3>D’Busana Sales Dashboard (Power BI)</h3>
+          <div class="labels"><span class="year">2025</span><span class="category">Dashboard</span></div>
+          <p>Dashboard interaktif untuk penjualan multi‑channel (TikTok, Shopee, dsb.): model data, DAX KPI, slicer dinamis, dan export laporan.</p>
+        </div>
+      </article>
+
+      <article class="work">
+        <div class="thumb"><img src="/day-1/images-works-1.png" alt="Vibrant Portraits"></div>
+        <div>
+          <h3>Prediksi Penjualan dengan XGBoost + BayesSearchCV</h3>
+          <div class="labels"><span class="year">2024</span><span class="category">Time Series</span></div>
+          <p>Prediksi kuantitas penjualan bulanan dengan XGBoost, fitur musiman, validasi, dan Bayesian Optimization. Hasil: RMSE turun signifikan.</p>
+        </div>
+      </article>
+
+      <article class="work">
+        <div class="thumb"><img src="/day-1/images-works-2.png" alt="Malayalam type"></div>
+        <div>
+          <h3>Klasifikasi Tumor Payudara (ResNet50)</h3>
+          <div class="labels"><span class="year">2025</span><span class="category">Computer Vision</span></div>
+          <p>Transfer learning ResNet50 pada citra mammogram (MIAS). Pipeline mencakup augmentasi, fine‑tuning, evaluasi, dan interpretasi prediksi.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Contact -->
+    <section class="container contact" id="contact">
+      <h2>Hubungi saya</h2>
+      <form action="https://formspree.io/f/xnqvjqwv" method="POST">
+        <label for="no">Nama:</label>
+        <input id="no" name="no" type="text" required>
+
+        <label for="email">Email:</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="message">Pesan:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <div class="form-actions">
+          <button type="submit">Kirim</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div class="social" aria-label="social links">
+      <a href="#" aria-label="Facebook" title="Facebook">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.06C22 6.507 17.523 2 12 2S2 6.506 2 12.06c0 5.017 3.657 9.174 8.438 9.94v-7.03H7.898v-2.91h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.196 2.238.196v2.47h-1.26c-1.243 0-1.63.776-1.63 1.57v1.886h2.773l-.443 2.91h-2.33v7.03C18.343 21.234 22 17.077 22 12.06Z" fill="currentColor"/></svg>
+      </a>
+      <a href="#" aria-label="Instagram" title="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 3a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.2A2.8 2.8 0 1 0 12 15.8 2.8 2.8 0 0 0 12 9.2Zm5.3-.9a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z" fill="currentColor"/></svg>
+      </a>
+      <a href="#" aria-label="Twitter" title="Twitter">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 5.8c-.7.3-1.5.6-2.3.7.8-.5 1.4-1.3 1.7-2.2-.7.5-1.7.9-2.6 1.1A3.9 3.9 0 0 0 12 8.6c0 .3 0 .6.1.8C8.5 9.3 5.6 7.8 3.7 5.4c-.3.6-.5 1.2-.5 2 0 1.4.7 2.6 1.8 3.4-.6 0-1.2-.2-1.7-.5v.1c0 2 1.4 3.6 3.3 4-.3.1-.7.1-1.1.1-.3 0-.5 0-.8-.1.5 1.6 2.1 2.8 3.9 2.9A7.8 7.8 0 0 1 2 19.5a11 11 0 0 0 6 1.8c7.2 0 11.1-6.1 11.1-11.3v-.5c.8-.6 1.5-1.3 2-2.2Z" fill="currentColor"/></svg>
+      </a>
+      <a href="#" aria-label="LinkedIn" title="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 8h4V23h-4V8Zm7.98 0h3.84v2.05h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-3.99v-6.64c0-1.58-.03-3.6-2.2-3.6-2.2 0-2.53 1.72-2.53 3.5V23H8.48V8Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <div class="copyright">Copyright © 2025. All rights reserved.</div>
+  </footer>
+</body>
+</html>
