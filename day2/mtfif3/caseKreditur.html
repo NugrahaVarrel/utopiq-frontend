@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreditur</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table, th, td { border: 1px solid black; }
+        th, td { padding: 10px; text-align: left; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h2>Kreditur</h2>
+
+    <!-- Form input data kreditur -->
+    <label>Nama:</label><br>
+    <input type="text" id="nama" /><br><br>
+    <label>Usia:</label><br>
+    <input type="number" id="usia" /><br><br>
+    <label>Pekerjaan:</label><br>
+    <input type="text" id="pekerjaan" /><br><br>
+    <label>DP (Rp):</label><br>
+    <input type="number" id="dp" /><br><br>
+    <label>Harga Motor (Rp):</label><br>
+    <input type="number" id="hargaMotor" /><br><br>
+    <label>Penghasilan (Rp):</label><br>
+    <input type="number" id="penghasilan" /><br><br>
+    <button onclick="submitData()">Submit</button>
+
+    <h3>Hasil:</h3>
+    <div id="hasil"></div>
+
+    <h3>Data Kreditur:</h3>
+    <table id="dataKreditur">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Usia</th>
+                <th>Pekerjaan</th>
+                <th>DP</th>
+                <th>Harga Motor</th>
+                <th>Penghasilan</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h3>Pengajuan Disetujui (Usia 21-55 dan Penghasilan > 3 Juta):</h3>
+    <table id="filteredData">
+        <thead>
+            <tr>
+                <th>Nama</th>
+                <th>Usia</th>
+                <th>Pekerjaan</th>
+                <th>DP</th>
+                <th>Harga Motor</th>
+                <th>Penghasilan</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const pengajuanLeasing = [
+            { nama: "Andi", usia: 25, pekerjaan: "Karyawan", dp: 6000000, hargaMotor: 18000000, penghasilan: 3000000 },
+            { nama: "Budi", usia: 19, pekerjaan: "Pelajar", dp: 4000000, hargaMotor: 16000000, penghasilan: 5000000 },
+            { nama: "Citra", usia: 33, pekerjaan: "Wiraswasta", dp: 8000000, hargaMotor: 20000000, penghasilan: 2000000 }
+        ];
+
+        // Tambah data kreditur
+        pengajuanLeasing.push({ nama: "Dewi", usia: 28, pekerjaan: "Karyawan", dp: 7000000, hargaMotor: 18000000, penghasilan: 3000000 });
+
+        // Menampilkan data yang sudah ada di tabel saat halaman dimuat
+        function tampilkanData() {
+            const tbody = document.querySelector("#dataKreditur tbody");
+            tbody.innerHTML = ""; // Kosongkan tabel sebelum menambah data baru
+            pengajuanLeasing.forEach(kreditur => {
+                const row = document.createElement("tr");
+                Object.values(kreditur).forEach(value => {
+                    const cell = document.createElement("td");
+                    cell.textContent = typeof value === "number" ? value.toLocaleString() : value;
+                    row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+            });
+        }
+
+        // Menampilkan data yang difilter (Usia 21-55 dan Penghasilan > 3 juta)
+        function tampilkanDataFilter() {
+            const filteredData = pengajuanLeasing.filter(kreditur => kreditur.usia >= 21 && kreditur.usia <= 55 && kreditur.penghasilan > 3000000);
+            const tbody = document.querySelector("#filteredData tbody");
+            tbody.innerHTML = ""; // Kosongkan tabel sebelum menambah data baru
+            filteredData.forEach(kreditur => {
+                const row = document.createElement("tr");
+                Object.values(kreditur).forEach(value => {
+                    const cell = document.createElement("td");
+                    cell.textContent = typeof value === "number" ? value.toLocaleString() : value;
+                    row.appendChild(cell);
+                });
+                tbody.appendChild(row);
+            });
+        }
+
+        // Panggil fungsi untuk menampilkan data kreditur saat halaman dimuat
+        tampilkanData();
+        tampilkanDataFilter();
+
+        function submitData() {
+            const nama = document.getElementById("nama").value;
+            const usia = parseInt(document.getElementById("usia").value);
+            const pekerjaan = document.getElementById("pekerjaan").value;
+            const dp = parseFloat(document.getElementById("dp").value);
+            const hargaMotor = parseFloat(document.getElementById("hargaMotor").value);
+            const penghasilan = parseFloat(document.getElementById("penghasilan").value);
+            const hasilDiv = document.getElementById("hasil");
+
+            // Validasi input
+            if (!nama || isNaN(usia) || !pekerjaan || isNaN(dp) || isNaN(hargaMotor) || isNaN(penghasilan)) {
+                hasilDiv.innerHTML = "<span class='error'>Semua field harus diisi dengan benar.</span>";
+                return;
+            }
+
+            if (usia < 21 || usia > 55) {
+                hasilDiv.innerHTML = "<span class='error'>Usia tidak mencukupi (21-55 tahun).</span>";
+                return;
+            }
+
+            const dpMinimum = hargaMotor * 0.3;
+            if (dp < dpMinimum) {
+                hasilDiv.innerHTML = `<span class='error'>DP minimal adalah 30% dari harga motor (Rp ${dpMinimum.toFixed(0)}).</span>`;
+                return;
+            }
+
+            if (penghasilan <= 3000000) {
+                hasilDiv.innerHTML = "<span class='error'>Penghasilan harus di atas Rp 3.000.000.</span>";
+                return;
+            }
+
+            // Menambahkan data kreditur ke array
+            pengajuanLeasing.push({ nama, usia, pekerjaan, dp, hargaMotor, penghasilan });
+
+            // Menampilkan data yang baru ditambahkan di tabel
+            tampilkanData();
+
+            // Menampilkan data yang difilter
+            tampilkanDataFilter();
+
+            // Menampilkan hasil pengajuan kredit yang disetujui
+            hasilDiv.innerHTML = `
+                <span class='success'>Pengajuan kredit untuk <b>${nama}</b> disetujui.</span><br>
+                <ul>
+                    <li>Nama: ${nama}</li>
+                    <li>Usia: ${usia} tahun</li>
+                    <li>Pekerjaan: ${pekerjaan}</li>
+                    <li>DP: Rp ${dp.toLocaleString()}</li>
+                    <li>Harga Motor: Rp ${hargaMotor.toLocaleString()}</li>
+                    <li>Penghasilan: Rp ${penghasilan.toLocaleString()}</li>
+                </ul>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulasi Cicilan Motor</title>
+</head>
+<body>
+  <h2>Simulasi Cicilan Motor</h2>
+
+  <label>Harga Motor (Rp):</label><br>
+  <input type="number" id="hargaMotor" /><br><br>
+
+  <label>Uang Muka (DP) (Rp):</label><br>
+  <input type="number" id="dp" /><br><br>
+
+
+  <label>Tenor (bulan):</label><br>
+  <select id="tenor">
+    <option value="12">12 bulan</option>
+    <option value="24">24 bulan</option>
+    <option value="36">36 bulan</option>
+    <option value="48">48 bulan</option>
+  </select><br><br>
+
+  <label>Usia Pembeli:</label><br>
+  <input type="number" id="usia" placeholder="Contoh: 30" /><br><br>
+
+  <button onclick="hitungCicilan()">Hitung Cicilan</button>
+
+  <h3>Hasil:</h3>
+  <div id="hasil"></div>
+
+  <script>
+    function hitungCicilan() {
+      const harga = parseFloat(document.getElementById("hargaMotor").value);
+      const dp = parseFloat(document.getElementById("dp").value);
+      const tenor = parseInt(document.getElementById("tenor").value);
+      const usia = parseInt(document.getElementById("usia").value);
+      const hasilDiv = document.getElementById("hasil");
+
+      // Validasi input
+      if (isNaN(harga) || isNaN(dp) || isNaN(usia)) {
+        hasilDiv.innerHTML = "<span style='color:red;'>Harga, DP, dan Usia harus diisi dengan angka.</span>";
+        return;
+      }
+
+      if (usia < 21) {
+        hasilDiv.innerHTML = `<span style='color:red;'>Usia tidak mencukupi (minimal 21 tahun).</span>`;
+        return;
+      }
+
+      const dpMinimum = harga * 0.3;
+      if (dp < dpMinimum) {
+        hasilDiv.innerHTML = `<span style="color:red;">DP minimal adalah 30% dari harga motor (Rp ${dpMinimum.toFixed(0)}).</span>`;
+        return;
+      }
+
+      // Bunga sesuai tenor
+      let bunga = 0;
+      if (tenor === 12) {
+        bunga = 0.03;
+      } else if (tenor === 24) {
+        bunga = 0.06;
+      } else if (tenor === 36) {
+        bunga = 0.10;
+      } else if (tenor === 48) {
+        bunga = 0.20;
+      }
+
+      // Perhitungan
+      const pinjaman = harga - dp;
+      const totalBunga = pinjaman * bunga;
+      const totalPembayaran = pinjaman + totalBunga;
+      const cicilanBulanan = totalPembayaran / tenor;
+
+      let detailCicilan = '<table border="1" cellpadding="4" style="border-collapse:collapse;margin-top:10px;">';
+      detailCicilan += '<tr><th>Bulan</th><th>Bunga Bulan Ini</th><th>Cicilan Bulan Ini</th></tr>';
+      let sisaPinjaman = pinjaman;
+      for (let i = 1; i <= tenor; i++) {
+        let bungaBulan = sisaPinjaman * bunga / tenor;
+        let cicilanBulan = cicilanBulanan * i;;
+        detailCicilan += `<tr><td>${i}</td><td>Rp ${bungaBulan.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td><td>Rp ${cicilanBulan.toLocaleString(undefined, { maximumFractionDigits: 0 })}</td></tr>`;
+      }
+      detailCicilan += '</table>';
+
+      hasilDiv.innerHTML = `
+        <p>Harga Motor: Rp ${harga.toLocaleString()}</p>
+        <p>DP: Rp ${dp.toLocaleString()}</p>
+        <p>Pinjaman: Rp ${pinjaman.toLocaleString()}</p>
+        <p>Bunga: ${(bunga*100).toFixed(0)}%</p>
+        <p>Total Pembayaran: Rp ${totalPembayaran.toLocaleString()}</p>
+        <p><strong>Cicilan per bulan: Rp ${cicilanBulanan.toLocaleString(undefined, { maximumFractionDigits: 0 })}</strong></p>
+        <h4>Rincian Cicilan per Bulan:</h4>
+        ${detailCicilan}
+      `;
+    }
+  </script>
+</body>
+</html>

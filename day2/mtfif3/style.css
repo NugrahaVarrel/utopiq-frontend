@@ -1,0 +1,45 @@
+h3 {
+  color: yellow;
+}
+
+.container {
+  background-color: salmon;
+  padding: 20px;
+  margin: 20px;
+}
+
+#title {
+  color: brown;
+  font-size: 24px;
+  text-align: center;
+}
+
+#title:hover {
+  color: green;
+  text-align: right;
+}
+
+#submit {
+  padding: 20px;
+  /* border-width: 3px;
+  border-color: red;
+  border-style: dotted; */
+  border: 2px red dotted;
+  margin: 20px;
+}
+
+#submit:active {
+  color: red;
+}
+
+.container-images img {
+  margin: auto;
+  display: block;
+}
+
+@media screen and (max-width: 600px) {
+  #title {
+    color: green;
+  }
+  
+}
